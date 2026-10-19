@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中學學業溫習資源庫 | S2 Study Hub</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    .brand-font {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    /* Subtle gradient background mesh */
+    .bg-mesh {
+      background-color: #f8fafc;
+      background-image: 
+        radial-gradient(at 15% 20%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+        radial-gradient(at 85% 15%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
+        radial-gradient(at 50% 80%, rgba(244, 63, 94, 0.05) 0px, transparent 50%);
+    }
+  </style>
+</head>
+<body class="bg-mesh text-slate-800 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- ==================== TOP NAVIGATION ==================== -->
+  <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200/80 transition-all">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-sky-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <span class="text-xl">📚</span>
+          </div>
+          <div>
+            <span class="font-extrabold text-lg tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors brand-font">S2 StudyHub</span>
+            <span class="hidden sm:inline-block ml-2 text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-600 border border-indigo-100">中二溫習大本營</span>
+          </div>
+        </a>
+
+        <!-- Right Quick Actions -->
+        <div class="flex items-center gap-3">
+          <a href="#quick-guide" class="text-xs sm:text-sm font-medium text-slate-600 hover:text-indigo-600 px-3 py-1.5 rounded-lg hover:bg-slate-100 transition-colors">
+            📖 Pages 發布教學
+          </a>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200/60">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            資源庫運作中
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO HEADER ==================== -->
+  <header class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-8 text-center sm:text-left">
+    <div class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm relative overflow-hidden">
+      <!-- Decorative background blur -->
+      <div class="absolute -right-20 -top-20 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-bold mb-4">
+          <span>🎓</span> 香港中學生專屬・自修與救亡資源站
+        </div>
+        <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          全方位各科溫習門戶<br>
+          <span class="bg-gradient-to-r from-indigo-600 via-sky-600 to-indigo-700 bg-clip-text text-transparent">用人話拆解概念，考試輕鬆過關！</span>
+        </h1>
+        <p class="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+          歡迎來到我的 GitHub Pages 學習大本營！這裡整理了中二各個科目的精讀筆記、概念卡與互動自測題。點擊下方卡片即可直達專題溫習頁面。
+        </p>
+
+        <!-- Stats Bar -->
+        <div class="mt-6 flex flex-wrap items-center gap-4 sm:gap-8 pt-6 border-t border-slate-100 text-slate-600 text-xs sm:text-sm">
+          <div><span class="font-bold text-slate-900 text-base">中二 (S2)</span> 核心課程</div>
+          <div class="h-4 w-px bg-slate-200"></div>
+          <div><span class="font-bold text-indigo-600 text-base" id="subject-count">1</span> 個已上架主題</div>
+          <div class="h-4 w-px bg-slate-200"></div>
+          <div><span class="font-bold text-emerald-600 text-base">持續更新中</span> 🚀</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT & FILTER BAR ==================== -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 pb-16 w-full">
+    
+    <!-- Controls: Filter Pills & Search Input -->
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-6">
+      <!-- Filter buttons -->
+      <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 sm:pb-0 text-xs font-bold" id="filter-container">
+        <button onclick="filterCategory('all')" class="filter-btn active px-4 py-2 rounded-xl bg-indigo-600 text-white shadow-sm transition">
+          全部科目 (All)
+        </button>
+        <button onclick="filterCategory('math')" class="filter-btn px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 transition">
+          📐 數學科 (Math)
+        </button>
+        <button onclick="filterCategory('science')" class="filter-btn px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 transition">
+          🔬 科學科 (Science)
+        </button>
+        <button onclick="filterCategory('chinese')" class="filter-btn px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 transition">
+          📚 中文科 (Chinese)
+        </button>
+        <button onclick="filterCategory('english')" class="filter-btn px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 transition">
+          🇬🇧 英文科 (English)
+        </button>
+      </div>
+
+      <!-- Real-time search box -->
+      <div class="relative w-full sm:w-64">
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="搜尋科目、章節關鍵字..." 
+          class="w-full text-xs pl-9 pr-4 py-2 rounded-xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-slate-800 placeholder-slate-400 transition"
+          oninput="handleSearch()"
+        >
+        <span class="absolute left-3 top-2.5 text-slate-400 text-xs">🔍</span>
+      </div>
+    </div>
+
+    <!-- CARDS GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="cards-grid">
+
+      <!-- ==================== CARD 1: S2 MATH (USER REQUESTED & ACTIVE) ==================== -->
+      <div class="subject-card group bg-white rounded-2xl border border-indigo-200 hover:border-indigo-400 p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between relative overflow-hidden" data-category="math" data-title="中二數學 UT1 救亡與溫習大本營 Ch.2 Ch.3 因式分解 分式 公式">
+        <!-- Top accent banner -->
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-indigo-500 via-sky-500 to-indigo-600"></div>
+
+        <div>
+          <!-- Tags / Badges -->
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-100">
+              <span>📐</span> 數學科 Mathematics
+            </span>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-black bg-rose-50 text-rose-600 border border-rose-200/60 uppercase tracking-wider animate-pulse">
+              🔥 UT1 必讀
+            </span>
+          </div>
+
+          <!-- Title -->
+          <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors leading-snug">
+            中二數學 UT1 救亡與溫習大本營<br>
+            <span class="text-sm font-semibold text-slate-500">(Ch.2 & Ch.3 專題)</span>
+          </h2>
+
+          <!-- Description -->
+          <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+            專為 EMI 英文中學同學度身訂造嘅人話救亡筆記！全面打通 Ch.2 恆等式與因式分解 (Identities & Factorization) 及 Ch.3 代數分式與換主體 (Algebraic Fractions & Formulas)。
+          </p>
+
+          <!-- Highlights Pills -->
+          <div class="mt-4 flex flex-wrap gap-1.5 text-[11px]">
+            <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md font-medium">💡 人話心智卡片</span>
+            <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md font-medium">🧭 4步決策樹</span>
+            <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md font-medium">🎯 10題引導自測</span>
+            <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md font-medium">⚠️ 5大考試地雷</span>
+          </div>
+        </div>
+
+        <!-- Card Footer & CTA Button -->
+        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+          <div class="text-[11px] text-slate-400">
+            <span>難度：⭐️⭐️⭐️</span>
+          </div>
+          <!-- NOTE: 請將 href 改為你放置數學網頁的檔案名稱，例如 math.html 或 997bf322.html -->
+          <a href="math.html" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-sm transition-all group-hover:translate-x-0.5">
+            <span>立即進入溫習</span>
+            <span>👉</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ==================== CARD 2: S2 SCIENCE (COMING SOON) ==================== -->
+      <div class="subject-card group bg-white/70 rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between relative overflow-hidden" data-category="science" data-title="中二科學 綜合科學 Integrated Science 物質的粒子模型 Unit 7">
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-slate-200"></div>
+
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold bg-sky-50 text-sky-700 border border-sky-100">
+              <span>🔬</span> 科學科 Integrated Science
+            </span>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-500">
+              籌備中 ⏳
+            </span>
+          </div>
+
+          <h2 class="text-lg font-bold text-slate-800 leading-snug">
+            中二科學：物質的粒子模型與狀態<br>
+            <span class="text-sm font-semibold text-slate-400">(Unit 7 Particle Model)</span>
+          </h2>
+
+          <p class="mt-2 text-xs text-slate-500 leading-relaxed">
+            氣體、液體與固體的微觀排列，用日常生活圖解熱脹冷縮、布朗運動 (Brownian motion) 與氣壓實驗必背考試題目。
+          </p>
+
+          <div class="mt-4 flex flex-wrap gap-1.5 text-[11px]">
+            <span class="bg-slate-100 text-slate-400 px-2 py-0.5 rounded-md">分子微觀實驗</span>
+            <span class="bg-slate-100 text-slate-400 px-2 py-0.5 rounded-md">實驗圖表題</span>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+          <span>即將推出</span>
+          <button disabled class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-400 text-xs font-semibold cursor-not-allowed">
+            敬請期待
+          </button>
+        </div>
+      </div>
+
+      <!-- ==================== CARD 3: S2 CHINESE (COMING SOON) ==================== -->
+      <div class="subject-card group bg-white/70 rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between relative overflow-hidden" data-category="chinese" data-title="中二中文 中國語文 文言文 閱讀理解 白話文">
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-slate-200"></div>
+
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold bg-amber-50 text-amber-700 border border-amber-100">
+              <span>📚</span> 中國語文 Chinese
+            </span>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-500">
+              籌備中 ⏳
+            </span>
+          </div>
+
+          <h2 class="text-lg font-bold text-slate-800 leading-snug">
+            中二文言文破關地圖：實詞虛詞全攻略<br>
+            <span class="text-sm font-semibold text-slate-400">(文言字詞與句式梳理)</span>
+          </h2>
+
+          <p class="mt-2 text-xs text-slate-500 leading-relaxed">
+            拆解「之、乎、者、也」常見用法，精選初中文言經典段落字詞對譯與語譯得分技巧。
+          </p>
+
+          <div class="mt-4 flex flex-wrap gap-1.5 text-[11px]">
+            <span class="bg-slate-100 text-slate-400 px-2 py-0.5 rounded-md">常見實詞 100 選</span>
+            <span class="bg-slate-100 text-slate-400 px-2 py-0.5 rounded-md">白話逐句對照</span>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+          <span>即將推出</span>
+          <button disabled class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-400 text-xs font-semibold cursor-not-allowed">
+            敬請期待
+          </button>
+        </div>
+      </div>
+
+      <!-- ==================== CARD 4: S2 ENGLISH (COMING SOON) ==================== -->
+      <div class="subject-card group bg-white/70 rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between relative overflow-hidden" data-category="english" data-title="中二英文 English Language Grammar Tenses Passive Voice">
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-slate-200"></div>
+
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-100">
+              <span>🇬🇧</span> 英國語文 English
+            </span>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-500">
+              籌備中 ⏳
+            </span>
+          </div>
+
+          <h2 class="text-lg font-bold text-slate-800 leading-snug">
+            S2 Grammar Master: Tenses & Voice<br>
+            <span class="text-sm font-semibold text-slate-400">(Conditionals & Passive Voice)</span>
+          </h2>
+
+          <p class="mt-2 text-xs text-slate-500 leading-relaxed">
+            初中英文寫作與校內試常見地雷：Conditional Clauses (Type 1, 2) 與被動語態 (Passive Voice) 速成指南。
+          </p>
+
+          <div class="mt-4 flex flex-wrap gap-1.5 text-[11px]">
+            <span class="bg-slate-100 text-slate-400 px-2 py-0.5 rounded-md">Proofreading 陷阱</span>
+            <span class="bg-slate-100 text-slate-400 px-2 py-0.5 rounded-md">寫作句型模板</span>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+          <span>即將推出</span>
+          <button disabled class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-400 text-xs font-semibold cursor-not-allowed">
+            敬請期待
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Empty Search State -->
+    <div id="no-results" class="hidden text-center py-12 bg-white rounded-2xl border border-slate-200 mt-6">
+      <span class="text-3xl">🔎</span>
+      <h3 class="text-base font-bold text-slate-700 mt-2">找不到符合條件的溫習專題</h3>
+      <p class="text-xs text-slate-500 mt-1">請嘗試輸入其他關鍵字，或切換上方科目類別。</p>
+      <button onclick="resetFilters()" class="mt-4 text-xs font-bold text-indigo-600 hover:text-indigo-700 underline">
+        重設所有篩選條件
+      </button>
+    </div>
+
+    <!-- ==================== GITHUB PAGES QUICK GUIDE ==================== -->
+    <section id="quick-guide" class="mt-12 bg-indigo-950 text-white rounded-3xl p-6 sm:p-8 shadow-lg border border-indigo-900">
+      <div class="flex items-center gap-2 mb-3 text-amber-400 text-xs font-bold tracking-wider uppercase">
+        <span>🚀</span> GitHub Pages 免費架站教學
+      </div>
+      <h2 class="text-xl sm:text-2xl font-bold">如何將這套首頁與數學網頁放上 GitHub Pages？</h2>
+      <p class="text-xs sm:text-sm text-indigo-200 mt-1">
+        只需將檔案放進你的 GitHub Repository，免費擁有自己嘅公開溫習網站：
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+        <div class="bg-white/10 p-4 rounded-xl border border-white/10">
+          <div class="w-6 h-6 rounded-full bg-amber-400 text-slate-900 font-black text-xs flex items-center justify-center mb-2">1</div>
+          <h3 class="font-bold text-sm text-white">上傳首頁 (index.html)</h3>
+          <p class="text-xs text-indigo-200 mt-1">
+            將本檔案儲存為 <code class="bg-black/30 px-1 py-0.5 rounded text-amber-300">index.html</code>，直接放在 Repository 的根目錄 (Root)。
+          </p>
+        </div>
+
+        <div class="bg-white/10 p-4 rounded-xl border border-white/10">
+          <div class="w-6 h-6 rounded-full bg-amber-400 text-slate-900 font-black text-xs flex items-center justify-center mb-2">2</div>
+          <h3 class="font-bold text-sm text-white">放進數學專題網頁</h3>
+          <p class="text-xs text-indigo-200 mt-1">
+            將之前生成的數學救亡網頁改名為 <code class="bg-black/30 px-1 py-0.5 rounded text-amber-300">math.html</code>，與 index.html 放在同一個目錄。
+          </p>
+        </div>
+
+        <div class="bg-white/10 p-4 rounded-xl border border-white/10">
+          <div class="w-6 h-6 rounded-full bg-amber-400 text-slate-900 font-black text-xs flex items-center justify-center mb-2">3</div>
+          <h3 class="font-bold text-sm text-white">開啟 GitHub Pages</h3>
+          <p class="text-xs text-indigo-200 mt-1">
+            到 Repo 的 <strong>Settings > Pages</strong>，在 Branch 選擇 <strong>main / (root)</strong> 並儲存，等待 1 分鐘即可上線！
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-white border-t border-slate-200 text-slate-500 py-6 text-center text-xs mt-auto">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="text-base">📐</span>
+        <span class="font-semibold text-slate-700">S2 溫習大本營・GitHub Pages 專屬門戶</span>
+      </div>
+      <div>
+        讓學習更簡單、更直覺・祝各位同學校內試 UT 與考試順利奪星！
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== INTERACTIVE JAVASCRIPT ==================== -->
+  <script>
+    let currentCategory = 'all';
+
+    function filterCategory(category) {
+      currentCategory = category;
+      
+      // Update button active states
+      const buttons = document.querySelectorAll('#filter-container .filter-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-sm');
+        btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+      });
+
+      // Highlight clicked button
+      const targetBtn = Array.from(buttons).find(b => b.getAttribute('onclick').includes(`'${category}'`));
+      if (targetBtn) {
+        targetBtn.classList.add('bg-indigo-600', 'text-white', 'shadow-sm');
+        targetBtn.classList.remove('bg-white', 'text-slate-600', 'border');
+      }
+
+      applyFilters();
+    }
+
+    function handleSearch() {
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const query = document.getElementById('search-input').value.trim().toLowerCase();
+      const cards = document.querySelectorAll('#cards-grid .subject-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const titleData = card.getAttribute('data-title').toLowerCase();
+        
+        const matchesCategory = (currentCategory === 'all' || category === currentCategory);
+        const matchesSearch = query === '' || titleData.includes(query);
+
+        if (matchesCategory && matchesSearch) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // Show/hide no results banner
+      const noResults = document.getElementById('no-results');
+      if (visibleCount === 0) {
+        noResults.classList.remove('hidden');
+      } else {
+        noResults.classList.add('hidden');
+      }
+    }
+
+    function resetFilters() {
+      document.getElementById('search-input').value = '';
+      filterCategory('all');
+    }
+  </script>
+
+</body>
+</html>
